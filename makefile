@@ -1,4 +1,3 @@
-
 all : hello
 hello : main.o sizeinfo.o number.o bubbleSort.o
 main : main.c status.h student.h 
