@@ -57,11 +57,16 @@ Enable all the possible warnings you will ever get from your compiler.
 - See make file 
 7. Include `student.h` into your `makefile`. In addition to step 4,
 also define a student. What is the error? What is the fix?
-
+- The error was that #include "status.h" was already in the student.h file so I had to delete #include "status.h" from the main file. 
+- I also had to set up clangd for my code to work again 
+and stablish the parameter for .vscode for my code to finally function properly
+ 
 ### Data Types
 
 1. What is a variable (take a minute to write it down)?
+- variable is 
 2. Each variable has a type in C. What are all the types defined in C?
+- we have int, float, char, short, long, 
 3. Create two files `sizeinfo.h` and `sizeinfo.c`. `sizeinfo.h` should
 expose a function `void system_sizes()`. This function
 
