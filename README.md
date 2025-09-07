@@ -20,8 +20,18 @@ rather than a strict guided path into c prowess.
 ### Playing around with makefile
 
 1. Run the `make` command. What is the error? What is the fix?
+- the error: gcc main.c
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:2: main] Error 1
+fix: putting int main in the main.c file 
 2. It is usually NOT a good idea to commit an executable file on git. Why?
+- It might slow down the process of pulling / fetching and it might increase the size of git files. 
+
 How can you make git ignore the executable you are producing in this repo?
+- When you type git status it will shows a.out and that's a file we don't want to commit 
+- So we create one .gitignore file so that we don't add a.out in the repository. 
 3. Run `make` twice. What is the inefficiency? What is the fix (at least two possible)?
 4. From your `main.c` file, print the value of only constant
 defined in `status.h`. What is the error? What is the fix (at least two possible)?
