@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/zPkSNLYm)
 # C Review
 
 This repo is provides the first lab content for the networks class
@@ -19,22 +20,53 @@ rather than a strict guided path into c prowess.
 ### Playing around with makefile
 
 1. Run the `make` command. What is the error? What is the fix?
+- the error: gcc main.c
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:2: main] Error 1
+fix: putting int main in the main.c file 
 2. It is usually NOT a good idea to commit an executable file on git. Why?
+- It might slow down the process of pulling / fetching and it might increase the size of git files. 
+
 How can you make git ignore the executable you are producing in this repo?
-3. Run `make` twice. What is the inefficiency? What is the fix (at least two possible)?
+- When you type git status it will shows a.out and that's a file we don't want to commit 
+- So we create one .gitignore file so that we don't add a.out in the repository. 
+3. Run `make` twice. What is the inefficiency? What is the fix (at least two possible)? 
+- We see gcc main.c when we run make both time 
+- We can add to the makefile 
+
 4. From your `main.c` file, print the value of only constant
 defined in `status.h`. What is the error? What is the fix (at least two possible)?
+- The error said we did not declare ENROLLED that's because we did not import status .h in main and add status.h as a dependency in main 
+- and add a library in the makefile
+- after fix we get this: gcc main.c --std c2x -o main 
+
+
 5. Change the value of the constant in `status.h` from `true` to `false`.
 Run `make`. What is the problem? What is the fix?
+- We get this errors: In file included from main.c:2:
+/usr/include/stdio.h:363:43: note: expected ‘const char * restrict’ but argument is of type ‘_Bool’
+  363 | extern int printf (const char *__restrict __format, ...);
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+make: *** [makefile:2: main] Error 1
+
+We don't get any warnings 
 6. Warnings are a great tool to have when programming.
 Enable all the possible warnings you will ever get from your compiler.
+- See make file 
 7. Include `student.h` into your `makefile`. In addition to step 4,
 also define a student. What is the error? What is the fix?
-
+- The error was that #include "status.h" was already in the student.h file so I had to delete #include "status.h" from the main file. 
+- I also had to set up clangd for my code to work again 
+and stablish the parameter for .vscode for my code to finally function properly
+ 
 ### Data Types
 
 1. What is a variable (take a minute to write it down)?
+- variable is 
 2. Each variable has a type in C. What are all the types defined in C?
+- we have int, float, char, short, long, 
 3. Create two files `sizeinfo.h` and `sizeinfo.c`. `sizeinfo.h` should
 expose a function `void system_sizes()`. This function
 

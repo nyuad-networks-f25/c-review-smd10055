@@ -1,1 +1,2 @@
-const bool ENROLLED = true;
+#include <stdbool.h>
+const bool ENROLLED = false;
