@@ -32,13 +32,29 @@ fix: putting int main in the main.c file
 How can you make git ignore the executable you are producing in this repo?
 - When you type git status it will shows a.out and that's a file we don't want to commit 
 - So we create one .gitignore file so that we don't add a.out in the repository. 
-3. Run `make` twice. What is the inefficiency? What is the fix (at least two possible)?
+3. Run `make` twice. What is the inefficiency? What is the fix (at least two possible)? 
+- We see gcc main.c when we run make both time 
+- We can add to the makefile 
+
 4. From your `main.c` file, print the value of only constant
 defined in `status.h`. What is the error? What is the fix (at least two possible)?
+- The error said we did not declare ENROLLED that's because we did not import status .h in main and add status.h as a dependency in main 
+- and add a library in the makefile
+- after fix we get this: gcc main.c --std c2x -o main 
+
+
 5. Change the value of the constant in `status.h` from `true` to `false`.
 Run `make`. What is the problem? What is the fix?
+- We get this errors: In file included from main.c:2:
+/usr/include/stdio.h:363:43: note: expected ‘const char * restrict’ but argument is of type ‘_Bool’
+  363 | extern int printf (const char *__restrict __format, ...);
+      |                    ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+make: *** [makefile:2: main] Error 1
+
+We don't get any warnings 
 6. Warnings are a great tool to have when programming.
 Enable all the possible warnings you will ever get from your compiler.
+- See make file 
 7. Include `student.h` into your `makefile`. In addition to step 4,
 also define a student. What is the error? What is the fix?
 
